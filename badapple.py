@@ -247,26 +247,6 @@ class BadApple(Tile):
         else:
             super().draw(screen, cam_x, cam_y)
 
-class HaikuGenerator(Tile):
-    def __init__(self: object, x: int, y: int, sprite: object, grid_size: int = 16, pixel_size: int = 3, z: int = 0) -> None:
-        super().__init__(x, y, sprite, grid_size, pixel_size, z)
-        self.haikus = []
-
-    def event(self, event):
-        return super().event(event)
-
-    def update(self: object, parent: object) -> None:
-        new_list = []
-        for i, item in enumerate(self.haikus):
-            if (item.timeout < item.clock):
-                continue
-            new_list.append(item)
-        self.haikus = new_list
-        return super().update(parent)
-
-    def draw(self: object, screen: object, cam_x: float, cam_y: float) -> None:
-        return super().draw(screen, cam_x, cam_y)
-
 class Haiku(TextBox):
     def __init__(self, x, y, background=None, text='', color=(0, 0, 0), font=None, text_margin=(0, 0, 0, 0), split_newline=True, size_x=None, size_y=None, scrollable=False):
         super().__init__(x, y, background, text, color, font, text_margin, split_newline, size_x, size_y, scrollable)
@@ -377,15 +357,15 @@ def load_scene(G, music_file, no_music):
 
     add_script_to_game(G, lambda *args: show_fps(MyText, G))
 
-    add_action_to_player(P, lambda p,k: k[K_z], PLAYER_MOVE_UP)
-    add_action_to_player(P, lambda p,k: k[K_s], PLAYER_MOVE_DOWN)
-    add_action_to_player(P, lambda p,k: k[K_q], PLAYER_MOVE_LEFT)
-    add_action_to_player(P, lambda p,k: k[K_d], PLAYER_MOVE_RIGHT)
+    #add_action_to_player(P, lambda p,k: k[K_z], PLAYER_MOVE_UP)
+    #add_action_to_player(P, lambda p,k: k[K_s], PLAYER_MOVE_DOWN)
+    #add_action_to_player(P, lambda p,k: k[K_q], PLAYER_MOVE_LEFT)
+    #add_action_to_player(P, lambda p,k: k[K_d], PLAYER_MOVE_RIGHT)
 
-    add_action_to_player(P, lambda p,k: k[K_z], lambda p: C.move(C.x, C.y - p.force, C.z))
-    add_action_to_player(P, lambda p,k: k[K_s], lambda p: C.move(C.x, C.y + p.force, C.z))
-    add_action_to_player(P, lambda p,k: k[K_d], lambda p: C.move(C.x + p.force, C.y, C.z))
-    add_action_to_player(P, lambda p,k: k[K_q], lambda p: C.move(C.x - p.force, C.y, C.z))
+    #add_action_to_player(P, lambda p,k: k[K_z], lambda p: C.move(C.x, C.y - p.force, C.z))
+    #add_action_to_player(P, lambda p,k: k[K_s], lambda p: C.move(C.x, C.y + p.force, C.z))
+    #add_action_to_player(P, lambda p,k: k[K_d], lambda p: C.move(C.x + p.force, C.y, C.z))
+    #add_action_to_player(P, lambda p,k: k[K_q], lambda p: C.move(C.x - p.force, C.y, C.z))
 
 def main(args: list) -> int:
     exit_status = 0
